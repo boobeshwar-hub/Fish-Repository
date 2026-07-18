@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register New Species | FishRepository</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/speciesform.css') }}">
+</head>
+<body>
+
+    <!-- Logged-in Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/dashboard" class="logo">Fish<span>Repository</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/database" class="active">Database</a></li>
+                    <li><a href="/gallery">Gallery</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <span class="user-greeting">Hello, Researcher</span>
+                <img src="https://ui-avatars.com/api/?name=User&background=023e8a&color=fff" alt="User Avatar" class="avatar">
+                <a href="/logout" class="btn btn-outline btn-sm">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-main">
+
+        <div class="page-header">
+            <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+            <h1>Register New Species</h1>
+            <p>Submit details for a newly discovered or unlisted marine species. All submissions are subject to peer review.</p>
+        </div>
+
+        <section class="form-card">
+            <!-- Form ready for Flask backend -->
+            <form action="/submit_species" method="POST" enctype="multipart/form-data" class="species-form">
+
+                <!-- SECTION 1: Biological Information -->
+                <div class="form-section">
+                    <h2 class="section-title">Biological Information</h2>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="scientific_name">Scientific Name</label>
+                            <input type="text" id="scientific_name" name="scientific_name" placeholder="e.g., Pterois volitans" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="common_name">Common Name</label>
+                            <input type="text" id="common_name" name="common_name" placeholder="e.g., Red Lionfish" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="family">Family / Taxonomy</label>
+                            <input type="text" id="family" name="family" placeholder="e.g., Scorpaenidae" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="conservation_status">Conservation Status</label>
+                            <select id="conservation_status" name="conservation_status" required>
+                                <option value="" disabled selected>Select status...</option>
+                                <option value="not_evaluated">Not Evaluated</option>
+                                <option value="least_concern">Least Concern</option>
+                                <option value="vulnerable">Vulnerable</option>
+                                <option value="endangered">Endangered</option>
+                                <option value="critically_endangered">Critically Endangered</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- SECTION 2: Environmental Context -->
+                <div class="form-section">
+                    <h2 class="section-title">Location & Environment</h2>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="environment_type">Environment Type</label>
+                            <select id="environment_type" name="environment_type" required>
+                                <option value="" disabled selected>Select environment...</option>
+                                <option value="saltwater">Saltwater / Oceanic</option>
+                                <option value="freshwater">Freshwater</option>
+                                <option value="brackish">Brackish</option>
+                                <option value="deep_sea">Deep Sea / Abyssal</option>
+                                <option value="coral_reef">Coral Reef</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="location">Primary Location / Zone</label>
+                            <input type="text" id="location" name="location" placeholder="e.g., Indo-Pacific Region" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="depth_min">Minimum Depth (Meters)</label>
+                            <input type="number" id="depth_min" name="depth_min" placeholder="e.g., 2" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="depth_max">Maximum Depth (Meters)</label>
+                            <input type="number" id="depth_max" name="depth_max" placeholder="e.g., 50" required>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- SECTION 3: Physical Description & Evidence -->
+                <div class="form-section">
+                    <h2 class="section-title">Description & Evidence</h2>
+
+                    <div class="input-group">
+                        <label for="description">Physical Description & Behavior</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Describe the physical characteristics, diet, and unique behaviors..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="species_image">Upload Reference Image</label>
+                        <div class="file-upload-container">
+                            <div class="upload-icon">📷</div>
+                            <p>Drag & drop an image or click to browse</p>
+                            <span class="file-hint">Supported formats: JPG, PNG (Max 5MB)</span>
+                            <input type="file" id="species_image" name="species_image" accept="image/png, image/jpeg" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Action -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="window.location.href='/dashboard'">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit for Verification</button>
+                </div>
+
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>&copy; 2026 FishRepository. Internal Researcher Dashboard.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

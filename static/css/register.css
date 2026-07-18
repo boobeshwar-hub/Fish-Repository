@@ -1,0 +1,217 @@
+/* --- CSS Reset & Variables --- */
+:root {
+    --primary-color: #023e8a;
+    --secondary-color: #0077b6;
+    --accent-color: #00b4d8;
+    --text-dark: #2b2b2b;
+    --text-light: #f8f9fa;
+    --bg-light: #f0f8ff;
+    --border-color: #e2e8f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px; /* Added padding for smaller screens */
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* --- Container & Card --- */
+.register-container {
+    width: 100%;
+    max-width: 600px; /* Slightly wider than login to accommodate details */
+}
+
+.register-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(2, 62, 138, 0.08);
+}
+
+/* --- Header --- */
+.register-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.register-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.register-header p {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* --- Form Elements --- */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Grid layout for side-by-side inputs */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.input-group input,
+.input-group select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #fff;
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+}
+
+.input-group input::placeholder {
+    color: #cbd5e1;
+}
+
+/* Fix select dropdown appearance */
+.input-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%230077b6%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 12px auto;
+}
+
+/* --- Options (Terms & Conditions) --- */
+.form-options {
+    margin-top: 5px;
+    font-size: 0.85rem;
+}
+
+.terms-agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.terms-agreement input {
+    margin-top: 3px;
+}
+
+.terms-agreement a {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.terms-agreement a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* --- Footer --- */
+.register-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.register-footer a {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.register-footer a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr; /* Stack inputs vertically on mobile */
+        gap: 18px;
+    }
+
+    .register-card {
+        padding: 30px 20px;
+    }
+}

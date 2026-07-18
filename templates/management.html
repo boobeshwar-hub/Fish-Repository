@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Management Console | FishRepository</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Link to the management CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+<body>
+
+  <!-- Logged-in Admin Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/dashboard" class="logo">Fish<span>Repository</span></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/database">Database</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/management" class="active">Management</a></li>
+        </ul>
+      </nav>
+      <div class="user-menu">
+        <span class="user-greeting">Admin Access</span>
+        <img src="https://ui-avatars.com/api/?name=Admin&background=d90429&color=fff" alt="Admin Avatar" class="avatar">
+        <a href="/logout" class="btn btn-outline btn-sm">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="management-main container">
+
+    <div class="page-header">
+      <h1>Management Console</h1>
+      <p>Approve user observations, manage the public gallery, and update database records.</p>
+    </div>
+
+    <div class="admin-grid">
+
+      <!-- SECTION 1: Pending Approvals -->
+      <section class="admin-card full-width">
+        <div class="card-header">
+          <h2>Pending Observations</h2>
+          <span class="badge-count">{{ pending_observations|length }} Pending</span>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date Submitted</th>
+                <th>Species Name</th>
+                <th>Submitted By</th>
+                <th>Evidence</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for obs in pending_observations %}
+              <tr>
+                <td>{{ obs.created_at }}</td>
+                <td><strong>{{ obs.common_name }}</strong> <em>({{ obs.scientific_name }})</em></td>
+                <td>{{ obs.submitted_by }}</td>
+                <td><a href="{{ obs.image_url }}" class="link-text" target="_blank">View Image</a></td>
+                <td>
+                  <div class="action-buttons">
+                    <!-- Approve -->
+                    <form action="{{ url_for('approve_species', species_id=obs.id) }}" method="POST" style="display:inline;">
+                      <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                    </form>
+                    <!-- Reject -->
+                    <form action="{{ url_for('reject_species', species_id=obs.id) }}" method="POST" style="display:inline;">
+                      <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Gallery Upload -->
+      <section class="admin-card">
+        <div class="card-header">
+          <h2>Upload to Gallery</h2>
+        </div>
+        <form action="/upload_gallery" method="POST" enctype="multipart/form-data" class="admin-form">
+
+          <div class="input-group">
+            <label for="species_name">Species Name</label>
+            <input type="text" id="species_name" name="species_name" required>
+          </div>
+
+          <div class="input-group">
+            <label for="scientific_name">Scientific Name</label>
+            <input type="text" id="scientific_name" name="scientific_name" required>
+          </div>
+
+          <div class="input-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="">Select category...</option>
+              <option value="Saltwater">Saltwater</option>
+              <option value="Freshwater">Freshwater</option>
+              <option value="Deep Sea">Deep Sea</option>
+              <option value="Coral Reef">Coral Reef</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="caption">Image Caption / Description</label>
+            <input type="text" id="caption" name="caption" required>
+          </div>
+
+          <div class="input-group">
+            <label for="gallery_image">Upload Image (JPG, PNG)</label>
+            <input type="file" id="gallery_image" name="gallery_image" accept="image/*" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">Upload Image</button>
+        </form>
+      </section>
+
+      <!-- SECTION 3: Update Records -->
+      <section class="admin-card">
+        <div class="card-header">
+          <h2>Update Records</h2>
+        </div>
+        <p class="section-desc">Search for an existing species or observation record to modify its details.</p>
+
+        <form action="/search_records" method="GET" class="search-form">
+          <input type="text" name="query" placeholder="Search by species name or ID..." required>
+          <button type="submit" class="btn btn-secondary">Search</button>
+        </form>
+
+        <div class="recent-records">
+          <h3>Recently Verified</h3>
+          <ul class="record-list">
+            {% for sp in recent_verified %}
+            <li>
+              <div class="record-info">
+                <strong>{{ sp.species_name }}</strong>
+                <span>ID: #SP-{{ sp.id }}</span>
+              </div>
+              <a href="/edit_record/{{ sp.id }}" class="btn btn-outline btn-sm">Edit</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="dashboard-footer">
+    <div class="container">
+      <p>&copy; 2026 FishRepository. Administrator Console.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+/* --- CSS Reset & Variables --- */
+:root {
+    --primary-color: #023e8a;
+    --secondary-color: #0077b6;
+    --accent-color: #00b4d8;
+    --text-dark: #2b2b2b;
+    --text-light: #f8f9fa;
+    --bg-light: #f0f8ff;
+    --border-color: #e2e8f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    /* Soft oceanic background for the login page */
+    background-color: var(--bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* --- Container & Card --- */
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.login-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(2, 62, 138, 0.08);
+}
+
+/* --- Header --- */
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.login-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* --- Form Elements --- */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.input-group input {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+}
+
+.input-group input::placeholder {
+    color: #cbd5e1;
+}
+
+/* --- Options (Remember Me / Forgot Password) --- */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #64748b;
+}
+
+.forgot-password {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.forgot-password:hover {
+    color: var(--primary-color);
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* --- Footer --- */
+.login-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.login-footer a {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.login-footer a:hover {
+    color: var(--primary-color);
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FishRepository | Global Marine Database</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/home.css')}}">
+    <!-- Google Fonts for professional typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="home" class="logo">Fish<span>Repository</span></a>
+            <a href="gallery" class="btn btn-outline">Gallery</a>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main>
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <h1>The Ultimate Marine Life Database</h1>
+                <p>Access high-resolution aquatic data, taxonomy, and conservation metrics for thousands of fish species across global ecosystems.</p>
+                <div class="hero-buttons">
+                    <a href="register" class="btn btn-primary">Register</a>
+                    <a href="signin" class="btn btn-secondary">Sign In</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features / Capabilities Section -->
+        <section class="features">
+            <div class="container feature-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="icon">🐟</div>
+                    <h3>Species Taxonomy</h3>
+                    <p>Detailed biological classifications, anatomical records, and behavioral patterns of over 34,000 recorded species.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="icon">🌊</div>
+                    <h3>Ecosystem Tracking</h3>
+                    <p>Monitor oceanic and freshwater environments, tracking changes in water quality and regional biodiversity.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Conservation Status</h3>
+                    <p>Up-to-date metrics on endangered species and global conservation efforts integrated directly from trusted marine institutes.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 FishRepository. All rights reserved. Built for marine biologists and developers.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

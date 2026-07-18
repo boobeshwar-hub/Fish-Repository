@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | FishRepository</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the specific login CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sign_in.css') }}">
+    <style>
+        .flash-messages {
+            margin-bottom: 15px;
+        }
+        .flash.error {
+            color: red;
+            font-weight: 600;
+        }
+        .flash.success {
+            color: green;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-card">
+
+            <!-- Header & Logo -->
+            <div class="login-header">
+                <a href="{{ url_for('home') }}" class="logo">Fish<span>Repository</span></a>
+                <h2>Welcome Back</h2>
+                <p>Log in to access marine datasets and conservation tools.</p>
+            </div>
+
+            <!-- Login Form -->
+            <form action="{{ url_for('signin') }}" method="POST" class="login-form">
+
+                <!-- Flash messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    <div class="flash-messages">
+                      {% for category, message in messages %}
+                        <p class="flash {{ category }}">{{ message }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endwith %}
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="researcher@institute.org" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+
+            </form>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Create a new account</a></p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | FishRepository</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the specific register CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/register.css')}}">
+</head>
+<body>
+
+    <div class="register-container">
+        <div class="register-card">
+
+            <!-- Header & Logo -->
+            <div class="register-header">
+                <a href="home" class="logo">Fish<span>Repository</span></a>
+                <h2>Join the Database</h2>
+                <p>Register to contribute and access global marine datasets.</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form action="/register" method="POST" class="register-form">
+
+                <!-- Personal Details (Grid Layout) -->
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Dr. Jane Doe" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="role">Primary Role</label>
+                        <select id="role" name="role" required>
+                            <option value="" disabled selected>Select your role...</option>
+                            <option value="biologist">Marine Biologist</option>
+                            <option value="researcher">Academic Researcher</option>
+                            <option value="student">Student</option>
+                            <option value="developer">Developer</option>
+                            <option value="hobbyist">Enthusiast / Hobbyist</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Professional Details -->
+                <div class="input-group">
+                    <label for="institution">Institution / Organization (Optional)</label>
+                    <input type="text" id="institution" name="institution" placeholder="e.g., Oceanographic Institute">
+                </div>
+
+                <div class="input-group">
+                    <label for="interests">Research Interests</label>
+                    <input type="text" id="interests" name="interests" placeholder="e.g., Coral reef ecology, Deep-sea taxonomy" required>
+                </div>
+
+                <!-- Account Credentials (Grid Layout) -->
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="researcher@institute.org" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="terms-agreement">
+                        <input type="checkbox" name="terms" required>
+                        <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+
+            </form>
+
+            <!-- Footer -->
+            <div class="register-footer">
+                <p>Already have an account? <a href="signin">Log in here</a></p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

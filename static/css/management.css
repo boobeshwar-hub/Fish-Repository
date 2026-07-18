@@ -1,0 +1,341 @@
+/* --- Base Styles & Variables --- */
+:root {
+    --primary-color: #023e8a;
+    --primary-hover: #0077b6;
+    --secondary-color: #48cae4;
+    --success-color: #2b9348;
+    --danger-color: #d90429;
+    --text-dark: #111827;
+    --text-muted: #6b7280;
+    --bg-light: #f3f4f6;
+    --border-color: #e5e7eb;
+    --card-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Navigation Bar (Matches your design) --- */
+.navbar {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-color);
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-greeting {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--danger-color); /* Highlighted for admin */
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-primary { background-color: var(--primary-color); color: white; }
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-secondary { background-color: var(--bg-light); color: var(--text-dark); border: 1px solid var(--border-color); }
+.btn-secondary:hover { background-color: #e5e7eb; }
+
+.btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: var(--text-dark); }
+.btn-outline:hover { background-color: var(--bg-light); }
+
+.btn-success { background-color: var(--success-color); color: white; }
+.btn-success:hover { background-color: #1e6c35; }
+
+.btn-danger { background-color: var(--danger-color); color: white; }
+.btn-danger:hover { background-color: #a80320; }
+
+/* --- Main Layout --- */
+.management-main {
+    padding: 40px 20px;
+    flex: 1;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: var(--text-muted);
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* --- Admin Cards --- */
+.admin-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.card-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.badge-count {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* --- Data Table --- */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background-color: var(--bg-light);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 12px 16px;
+}
+
+.data-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.link-text {
+    color: var(--primary-hover);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-text:hover { text-decoration: underline; }
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* --- Forms & Inputs --- */
+.admin-form .input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-dark);
+}
+
+.input-group input[type="text"],
+.input-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-light);
+    font-size: 0.95rem;
+}
+
+.file-upload-box {
+    border: 2px dashed var(--border-color);
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    background-color: var(--bg-light);
+}
+
+.file-upload-box input[type="file"] {
+    width: 100%;
+}
+
+/* --- Record Search & List --- */
+.section-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.recent-records h3 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.record-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.record-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.record-info strong {
+    display: block;
+    font-size: 0.95rem;
+}
+
+.record-info span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* --- Footer --- */
+.dashboard-footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: auto;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .admin-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; } /* On mobile, you'd typically implement a hamburger menu */
+}

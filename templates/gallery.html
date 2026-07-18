@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Species Gallery | FishRepository</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="{{ url_for('home') }}" class="logo">Fish<span>Repository</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('gallery') }}" class="active">Gallery</a></li>
+                </ul>
+            </nav>
+            <a href="signin" class="btn btn-outline">Sign In</a>
+        </div>
+    </header>
+
+    <!-- Gallery Header -->
+    <section class="gallery-header">
+        <div class="container">
+            <h1>Marine Species Gallery</h1>
+            <p>Explore high-resolution imagery of global aquatic biodiversity.</p>
+
+            <!-- Filter Buttons -->
+            <div class="filter-menu">
+                <a href="{{ url_for('gallery') }}"><button class="filter-btn {% if selected_category == 'All' %}active{% endif %}">All Species</button></a>
+                <a href="{{ url_for('gallery', category='Saltwater') }}"><button class="filter-btn {% if selected_category == 'Saltwater' %}active{% endif %}">Saltwater</button></a>
+                <a href="{{ url_for('gallery', category='Freshwater') }}"><button class="filter-btn {% if selected_category == 'Freshwater' %}active{% endif %}">Freshwater</button></a>
+                <a href="{{ url_for('gallery', category='Deep Sea') }}"><button class="filter-btn {% if selected_category == 'Deep Sea' %}active{% endif %}">Deep Sea</button></a>
+                <a href="{{ url_for('gallery', category='Coral Reef') }}"><button class="filter-btn {% if selected_category == 'Coral Reef' %}active{% endif %}">Coral Reef</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <main class="gallery-section">
+        <div class="container gallery-grid">
+            {% for item in species %}
+                <div class="gallery-item">
+                    <img src="{{ item.image_url }}" alt="{{ item.species_name }}">
+                    <div class="gallery-overlay">
+                        <span class="category-tag">{{ item.category }}</span>
+                        <h3>{{ item.species_name }}</h3>
+                        <p>{{ item.scientific_name }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 FishRepository. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

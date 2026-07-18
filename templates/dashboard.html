@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | FishRepository</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the dashboard CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+    <!-- Logged-in Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Fish<span>Repository</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="dashboard" class="active">Dashboard</a></li>
+                    <li><a href="gallery">Gallery</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <span class="user-greeting">Hello, Researcher</span>
+                <img src="https://ui-avatars.com/api/?name=User&background=023e8a&color=fff" alt="User Avatar" class="avatar">
+                <a href="#" class="btn btn-outline btn-sm">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main container">
+
+        <!-- Welcome & Stats Section -->
+        <section class="welcome-section">
+            <div class="welcome-text">
+                <h1>Welcome back to the Database</h1>
+                <p>Here is an overview of the repository and your recent contributions.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🐟</div>
+                    <div class="stat-info">
+                        <h3>{{ total_species }}</h3>
+                        <p>Total Species</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌊</div>
+                    <div class="stat-info">
+                        <h3>{{ total_submissions }}</h3>
+                        <p>Total Observation</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-info">
+                        <h3>{{ user_contributions }}</h3>
+                        <p>Your Contributions</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-info">
+                        <h3>{{ pending }}</h3>
+                        <p>Pending Approvals</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Dashboard Content Grid -->
+        <div class="dashboard-grid">
+
+            <!-- Main Content Area: Recent Activity -->
+            <section class="content-panel">
+                <div class="panel-header">
+                    <h2>Recent Database Additions</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Species Name</th>
+                        <th>Category</th>
+                        <th>Added By</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for sp in recent_additions %}
+                      <tr>
+                        <td><strong>{{ sp.common_name }}</strong> <em>({{ sp.scientific_name }})</em></td>
+                        <td>{{ sp.environment_type|capitalize }}</td>
+                        <td>{{ sp.submitted_by }}</td>
+                        <td>{{ sp.created_at.strftime('%B %d, %Y') }}</td>
+                        <td>
+                          {% if sp.status == 'approved' %}
+                            <span class="status-badge verified">Verified</span>
+                          {% elif sp.status == 'pending' %}
+                            <span class="status-badge pending">Pending</span>
+                          {% else %}
+                            <span class="status-badge rejected">Rejected</span>
+                          {% endif %}
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+            </section>
+
+            <!-- Sidebar: Quick Actions -->
+            <aside class="sidebar-panel">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <a href="newspecies" class="action-btn">
+                        <span class="icon">➕</span>
+                        <div class="text">
+                            <strong>Add New Species</strong>
+                            <span>Submit a new record to the database</span>
+                        </div>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <span class="icon">📊</span>
+                        <div class="text">
+                            <strong>Update Population Data</strong>
+                            <span>Edit existing conservation metrics</span>
+                        </div>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <span class="icon">📁</span>
+                        <div class="text">
+                            <strong>Batch Upload (CSV)</strong>
+                            <span>Import multiple records at once</span>
+                        </div>
+                    </a>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>&copy; 2026 FishRepository. Internal Researcher Dashboard.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
